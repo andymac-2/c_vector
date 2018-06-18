@@ -14,7 +14,7 @@ C generics typically use `void *` which is type unsafe, and often slow. This lib
 
 You will need to copy `gen_vector.h`, `vector.h`, and `vector.c` into your project first.
 
-There is a little more work required to use this library than a template in other languages. You must know ahead of time which types you want to use, and declare them. Compilation will fail if you try to use the vector for types you have not yet declared. Declaration is perforomed by modifying `gen_vector.h`. For example, if you wished to use the vector library for type `int` and type `float`, then you would add the following lines to `gen_vector.h`:
+There is a little more work required to use this library than a template in other languages. You must know ahead of time which types you want to use, and declare them. Compilation will fail if you try to use the vector for types you have not yet declared. Declaration is performed by modifying `gen_vector.h`. For example, if you wished to use the vector library for type `int` and type `float`, then you would add the following lines to `gen_vector.h`:
 
 ``` C
 #define T int
@@ -52,7 +52,7 @@ int main (int argv, char **argc) {
 
 ### API
 
-Available functions are as follows. replace `foo` with any type you have declared as above
+Available functions are as follows. replace `foo` below with any type you have declared as above
 
 #### `void foo_vec_init (foo_vector* vector)`
 
