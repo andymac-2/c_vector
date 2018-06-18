@@ -12,6 +12,8 @@ C generics typically use `void *` which is type unsafe, and often slow. This lib
 
 ### Quickstart
 
+You will need to copy `gen_vector.h`, `vector.h`, and `vector.c` into your project first.
+
 There is a little more work required to use this library than a template in other languages. You must know ahead of time which types you want to use, and declare them. Compilation will fail if you try to use the vector for types you have not yet declared. Declaration is perforomed by modifying `gen_vector.h`. For example, if you wished to use the vector library for type `int` and type `float`, then you would add the following lines to `gen_vector.h`:
 
 ``` C
@@ -24,7 +26,7 @@ There is a little more work required to use this library than a template in othe
 #undef T
 ```
 
-This will expose the functions of the vector library
+This will expose the functions of the vector library. The header file to use the vector container is `gen_vector.h`
 
 ```C
 #include "gen_vector.h"
