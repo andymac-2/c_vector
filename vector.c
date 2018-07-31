@@ -14,6 +14,7 @@
 #include <string.h>
 
 #define STARTSIZE 8
+#define GROWTHFACTOR 2
 
 /* constructor */
 void TP(T, _vec_init) (TP(T, _vector) * v) {
@@ -31,13 +32,13 @@ size_t TP(T, _vec_length) ( TP(T, _vector) * v) {
  * array. Will return 0 if there is not sufficient memory. */
 size_t TP (T, _vec_push) ( TP(T, _vector) * v, T elem) {
   if (v->lsize == v->psize) {
-    v->psize *= 2;
+    v->psize *= GROWTHFACTOR;
     
     T * block;
     block = realloc(v->data, sizeof( T ) * v->psize);
 
     if (block == NULL) {
-      v->psize /= 2;
+      v->psize /= GROWTHFACTOR;
       return 0;
     }
 
@@ -56,7 +57,7 @@ T TP (T, _vec_pop) ( TP(T, _vector) * v) {
 
   T value = v->data[v->lsize];
   if (v->lsize <= ((v->psize / 4) - STARTSIZE)) {
-    v->psize /= 2;
+    v->psize /= GROWTHFACTOR;
     v->data = realloc(v->data, sizeof( T ) * v->psize);
   }
   return value;
@@ -79,14 +80,56 @@ T TP(T, _vec_get) ( TP(T, _vector) * v, size_t index) {
 void TP (T, _vec_delete) ( TP(T, _vector) * v, size_t index) {
   assert (index < v->lsize);
   assert (index >= 0);
+  assert (v->lsize > 0);
 
   v->lsize --;
   memmove(&v->data[index], &v->data[index + 1], sizeof( T ) * (v->lsize - index));
 
   if (v->lsize <= ((v->psize / 4) - STARTSIZE)) {
-    v->psize /= 2;
+    v->psize /= GROWTHFACTOR;
     v-> data = realloc(v->data, sizeof( T ) * v->psize);
   }
+}
+
+/* Insert an element into an array at index "index". If there is
+   insuficcient memory, the function returns zero, otherwise it will
+   return the new size of the array */
+size_t TP (T, _vec_insert) ( TP(T, _vector) * v, size_t index, T elem) {
+  assert (index < v->lsize);
+  assert (index >= 0);
+
+  if (v->lsize == v->psize) {
+    v->psize *= GROWTHFACTOR;
+    
+    T * block;
+    block = realloc(v->data, sizeof( T ) * v->psize);
+
+    if (block == NULL) {
+      v->psize /= GROWTHFACTOR;
+      return 0;
+    }
+
+    v->data = block;
+  }
+
+  memmove(&v->data[index + 1], &v->data[index], sizeof( T ) * (v->lsize - index));
+
+  v->data[index] = elem;
+  v->lsize ++;
+  return v->lsize;
+}
+
+size_t TP (T, _vec_reserve) ( TP(T, _vector) * v, size_t psize) {
+  T * block;
+  block = realloc(v->data, sizeof( T ) * psize);
+
+  if (block == NULL) {
+    return v->psize;
+  }
+
+  v->data = block;
+  v->psize = psize;
+  return psize;
 }
 
 void TP (T, _vec_free) ( TP(T, _vector) * v) {
