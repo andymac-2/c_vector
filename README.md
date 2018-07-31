@@ -58,13 +58,17 @@ Available functions are as follows. replace `foo` below with any type you have d
 
 Initialises the vector. Call this before any other functions.
 
+#### `void foo_vec_free (foo_vector* vector)`
+
+Deallocates memory requested for the vector. Call this when the vector is no longer required.
+
 #### `size_t foo_vec_length (foo_vector* vector)`
 
 Returns the (logical) length of the vector.
 
 #### `size_t foo_vec_push (foo_vector* vector, foo elem)`
 
-Push an element onto the end of the vector. On success, returns the new length of the vector. On failure, (insufficient memory) this function returns 0;
+Push an element onto the end of the vector. On success, returns the new length of the vector. On failure, (insufficient memory) this function returns 0, and leaves the vector unmodified.
 
 #### `foo foo_vec_pop (foo_vector* vector)`
 
@@ -78,10 +82,14 @@ Set the element at `index` to `elem`.
 
 Returns the element at `index`.
 
-#### `void foo_vec_delete (foo_vector* vector, size_t index);`
+#### `size_t foo_vec_insert ( foo_vector* v, size_t index, foo elem)`
+
+Inserts a single element at a position given by 'index' and shifts the rest of the elements over by one. Returns the length of the vector on success, and on allocation failure, returns `0` and leaves the vectur unmodified.
+
+#### `void foo_vec_delete (foo_vector* vector, size_t index)`
 
 Deletes the element at `index`.
 
-#### `void foo_vec_free (foo_vector* vector)`
+#### `size_t foo_vec_reserve ( foo_vector* v, size_t psize)`
 
-Deallocates memory requested for the vector. Call this when the vector is no longer required.
+Reserves enough memory for `psize` elements in the vector, but leaves the vector otherwise unmodified. Will return the new physical size of the vector. If there is an allocation failure, the old physical size is returned.
