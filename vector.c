@@ -129,6 +129,11 @@ size_t TP (T, _vec_reserve) ( TP(T, _vector) * v, size_t psize) {
 
   v->data = block;
   v->psize = psize;
+
+  if (v->psize < v->lsize) {
+    v->lsize = v->psize;
+  }
+  
   return psize;
 }
 
