@@ -92,4 +92,4 @@ Deletes the element at `index`.
 
 #### `size_t foo_vec_reserve ( foo_vector* v, size_t psize)`
 
-Reserves enough memory for `psize` elements in the vector, but leaves the vector otherwise unmodified. Will return the new physical size of the vector. If there is an allocation failure, the old physical size is returned.
+Reserves enough memory for `psize` elements in the vector, but leaves the vector otherwise unmodified. Will return the new physical size of the vector. If there is an allocation failure, the old physical size is returned. If the reserved size is shorter than the length of the vector, the vector is shortened accordingly.
