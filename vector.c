@@ -85,7 +85,7 @@ void TP (T, _vec_delete) ( TP(T, _vector) * v, size_t index) {
   v->lsize --;
   memmove(&v->data[index], &v->data[index + 1], sizeof( T ) * (v->lsize - index));
 
-  if (v->lsize <= ((v->psize / 4) - STARTSIZE)) {
+  if (v->lsize + STARTSIZE <= ((v->psize / 4))) {
     v->psize /= GROWTHFACTOR;
     v-> data = realloc(v->data, sizeof( T ) * v->psize);
   }
