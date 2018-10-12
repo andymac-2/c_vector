@@ -32,11 +32,11 @@ This will expose the functions of the vector library. The header file to use the
 #include "gen_vector.h"
 
 int main (int argv, char **argc) {
-  int_vector vec;
+  int_vec vec;
   int_vec_init (&vec);
   
   
-  float_vector vec2;
+  float_vec vec2;
   float_vec_init (&vec2);
   
   /* Do something with the vectors here */
@@ -54,42 +54,42 @@ int main (int argv, char **argc) {
 
 Available functions are as follows. replace `foo` below with any type you have declared as above
 
-#### `void foo_vec_init (foo_vector* vector)`
+#### `void foo_vec_init (foo_vec* vector)`
 
 Initialises the vector. Call this before any other functions.
 
-#### `void foo_vec_free (foo_vector* vector)`
+#### `void foo_vec_free (foo_vec* vector)`
 
 Deallocates memory requested for the vector. Call this when the vector is no longer required.
 
-#### `size_t foo_vec_length (foo_vector* vector)`
+#### `size_t foo_vec_length (foo_vec* vector)`
 
 Returns the (logical) length of the vector.
 
-#### `size_t foo_vec_push (foo_vector* vector, foo elem)`
+#### `size_t foo_vec_push (foo_vec* vector, foo elem)`
 
 Push an element onto the end of the vector. On success, returns the new length of the vector. On failure, (insufficient memory) this function returns 0, and leaves the vector unmodified.
 
-#### `foo foo_vec_pop (foo_vector* vector)`
+#### `foo foo_vec_pop (foo_vec* vector)`
 
 Removes an element from the end of the vector. Returns the element.
 
-#### `void foo_vec_set (foo_vector* vector, size_t index, foo elem)`
+#### `void foo_vec_set (foo_vec* vector, size_t index, foo elem)`
 
 Set the element at `index` to `elem`.
 
-#### `foo foo_vec_get (foo_vector* vector, size_t index)`
+#### `foo foo_vec_get (foo_vec* vector, size_t index)`
 
 Returns the element at `index`.
 
-#### `size_t foo_vec_insert ( foo_vector* v, size_t index, foo elem)`
+#### `size_t foo_vec_insert ( foo_vec* vector, size_t index, foo elem)`
 
 Inserts a single element at a position given by 'index' and shifts the rest of the elements over by one. Returns the length of the vector on success, and on allocation failure, returns `0` and leaves the vectur unmodified.
 
-#### `void foo_vec_delete (foo_vector* vector, size_t index)`
+#### `void foo_vec_delete ( foo_vec* vector, size_t index)`
 
 Deletes the element at `index`.
 
-#### `size_t foo_vec_reserve ( foo_vector* v, size_t psize)`
+#### `size_t foo_vec_reserve ( foo_vec* vector, size_t psize)`
 
 Reserves enough memory for `psize` elements in the vector, but leaves the vector otherwise unmodified. Will return the new physical size of the vector. If there is an allocation failure, the old physical size is returned. If the reserved size is shorter than the length of the vector, the vector is shortened accordingly.

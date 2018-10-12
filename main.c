@@ -7,7 +7,7 @@ int main (void) {
 
   /* tests with int */
   
-  int_vector vec;
+  int_vec vec;
   int_vec_init (&vec);
 
   assert (int_vec_length(&vec) == 0);
@@ -48,7 +48,7 @@ int main (void) {
 
   /* the same with floats */
   
-  float_vector vec2;
+  float_vec vec2;
   float_vec_init (&vec2);
 
   assert (float_vec_length(&vec2) == 0);
