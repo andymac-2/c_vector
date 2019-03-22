@@ -84,7 +84,7 @@ Returns the element at `index`.
 
 #### `size_t foo_vec_insert ( foo_vec* vector, size_t index, foo elem)`
 
-Inserts a single element at a position given by 'index' and shifts the rest of the elements over by one. Returns the length of the vector on success, and on allocation failure, returns `0` and leaves the vectur unmodified.
+Inserts a single element at a position given by 'index' and shifts the rest of the elements over by one. Returns the length of the vector on success, and on allocation failure, returns `0` and leaves the vector unmodified.
 
 #### `void foo_vec_delete ( foo_vec* vector, size_t index)`
 
